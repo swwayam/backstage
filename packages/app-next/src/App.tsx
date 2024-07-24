@@ -29,12 +29,7 @@ import {
   ApiBlueprint,
   createFrontendModule,
 } from '@backstage/frontend-plugin-api';
-import {
-  techdocsPlugin,
-  TechDocsIndexPage,
-  TechDocsReaderPage,
-  EntityTechdocsContent,
-} from '@backstage/plugin-techdocs';
+import techdocsPlugin from '@backstage/plugin-techdocs/alpha';
 import appVisualizerPlugin from '@backstage/plugin-app-visualizer';
 import { homePage } from './HomePage';
 import { convertLegacyApp } from '@backstage/core-compat-api';
@@ -49,9 +44,6 @@ import {
 } from '@backstage/integration-react';
 import kubernetesPlugin from '@backstage/plugin-kubernetes/alpha';
 import { signInPageModule } from './overrides/SignInPage';
-import { convertLegacyPlugin } from '@backstage/core-compat-api';
-import { convertLegacyPageExtension } from '@backstage/core-compat-api';
-import { convertLegacyEntityContentExtension } from '@backstage/plugin-catalog-react/alpha';
 
 /*
 
@@ -81,20 +73,6 @@ TODO:
 /* graphiql package */
 
 /* app.tsx */
-
-const convertedTechdocsPlugin = convertLegacyPlugin(techdocsPlugin, {
-  extensions: [
-    // TODO: We likely also need a way to convert an entire <Route> tree similar to collectLegacyRoutes
-    convertLegacyPageExtension(TechDocsIndexPage, {
-      name: 'index',
-      defaultPath: '/docs',
-    }),
-    convertLegacyPageExtension(TechDocsReaderPage, {
-      defaultPath: '/docs/:namespace/:kind/:name/*',
-    }),
-    convertLegacyEntityContentExtension(EntityTechdocsContent),
-  ],
-});
 
 const customHomePageModule = createFrontendModule({
   pluginId: 'home',
@@ -140,6 +118,27 @@ const notFoundErrorPageModule = createFrontendModule({
   extensions: [notFoundErrorPage],
 });
 
+const customTechdocsPlugin = techdocsPlugin.withOverrides({
+  extensions: [
+    techdocsPlugin
+      .getExtension('element:techdocs/entity-content-empty-state')
+      .override({
+        config: {
+          schema: {
+            message: z => z.string().optional(),
+          },
+        },
+        // TODO(mtlewis) does this get wrapped by the original factory
+        // somehow? Doesn't seem to be possible to override `loader`.
+        factory: (_, context) => [
+          coreExtensionData.reactElement(
+            <div>{context.config.message ?? 'No docs content found!'}</div>,
+          ),
+        ],
+      }),
+  ],
+});
+
 const collectedLegacyPlugins = convertLegacyApp(
   <FlatRoutes>
     <Route path="/catalog-import" element={<CatalogImportPage />} />
@@ -149,7 +148,6 @@ const collectedLegacyPlugins = convertLegacyApp(
 const app = createApp({
   features: [
     pagesPlugin,
-    convertedTechdocsPlugin,
     userSettingsPlugin,
     homePlugin,
     appVisualizerPlugin,
@@ -158,6 +156,7 @@ const app = createApp({
     scmModule,
     notFoundErrorPageModule,
     customHomePageModule,
+    customTechdocsPlugin,
     ...collectedLegacyPlugins,
   ],
   /* Handled through config instead */

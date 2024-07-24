@@ -164,9 +164,6 @@ const _default: FrontendPlugin<
       inputs: {};
     }>;
     'entity-content:techdocs': ExtensionDefinition<{
-      kind: 'entity-content';
-      namespace: undefined;
-      name: undefined;
       config: {
         path: string | undefined;
         title: string | undefined;
@@ -210,11 +207,54 @@ const _default: FrontendPlugin<
               optional: true;
             }
           >;
+      inputs: {
+        emptyState: ExtensionInput<
+          ConfigurableExtensionDataRef<
+            React_2.JSX.Element,
+            'core.reactElement',
+            {}
+          >,
+          {
+            singleton: true;
+            optional: true;
+          }
+        >;
+      };
+      kind: 'entity-content';
+      namespace: undefined;
+      name: undefined;
+    }>;
+    'element:techdocs/entity-content-empty-state': ExtensionDefinition<{
+      kind: 'element';
+      namespace: 'techdocs';
+      name: 'entity-content-empty-state';
+      config: {};
+      configInput: {};
+      output: ConfigurableExtensionDataRef<
+        React_2.JSX.Element,
+        'core.reactElement',
+        {}
+      >;
       inputs: {};
     }>;
   }
 >;
 export default _default;
+
+// @alpha (undocumented)
+export const TechDocsEntityContentEmptyState: ExtensionDefinition<{
+  kind: 'element';
+  namespace: 'techdocs';
+  name: 'entity-content-empty-state';
+  config: {};
+  configInput: {};
+  output: ConfigurableExtensionDataRef<
+    React_2.JSX.Element,
+    'core.reactElement',
+    {}
+  >;
+  inputs: {};
+}>;
 
 // @alpha (undocumented)
 export const techDocsSearchResultListItemExtension: ExtensionDefinition<{
