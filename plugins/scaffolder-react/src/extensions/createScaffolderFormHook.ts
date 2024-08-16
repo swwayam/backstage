@@ -35,7 +35,8 @@ export type ScaffolderFormHook<
 };
 
 /**
- * Method for creating secret collectors that can be used in the scaffolder form to collect secrets from the end user.
+ * Method for creating hooks which can be used to collect
+ * secrets from the user before submitting to the backend.
  * @public
  */
 export function createScaffolderFormHook<
