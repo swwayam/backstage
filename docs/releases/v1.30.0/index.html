@@ -23,7 +23,7 @@
 <script src="/js/medium-zoom.js"></script>
 <script src="/js/dismissable-banner.js"></script>
 <script src="/js/scroll-nav-to-view-in-docs.js"></script><link rel="stylesheet" href="/assets/css/styles.d4d13622.css">
-<script src="/assets/js/runtime~main.5b1bdeac.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.224db063.js" defer="defer"></script>
 <script src="/assets/js/main.35ac690a.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -78,8 +78,8 @@
 <p>The <code>versions:check</code> command has also been removed as its only purpose was to verify and mutate the lockfile. We recommend using the <code>yarn dedupe</code> command instead, or the <code>yarn-deduplicate</code> package if you&#x27;re using Yarn classic, as a replacement. This change was made in order for us to support other Package Managers in the future and remove the coupling with <code>yarn</code>.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="breaking-backstagebackend-test-utils">BREAKING: <code>@backstage/backend-test-utils</code><a href="#breaking-backstagebackend-test-utils" class="hash-link" aria-label="Direct link to breaking-backstagebackend-test-utils" title="Direct link to breaking-backstagebackend-test-utils">​</a></h3>
 <ul>
-<li><code>setupRequestMockHandlers</code> is removed; use <code>CreateMockDirectoryOptions</code> instead.</li>
-<li><code>CreateMockDirectoryOptions</code> is removed; use <code>registerMswTestHooks</code> instead.</li>
+<li><code>setupRequestMockHandlers</code> is removed; use <code>registerMswTestHooks</code> instead.</li>
+<li><code>MockDirectoryOptions</code> is removed; use <code>CreateMockDirectoryOptions</code> instead.</li>
 <li>Stopped exporting the deprecated and internal <code>isDockerDisabledForTests</code> helper.</li>
 <li>Removed <code>get</code> method from <code>ServiceFactoryTester</code> which is replaced by <code>getSubject</code></li>
 </ul>
