@@ -23,8 +23,8 @@ export type ScaffolderFormHookContext<TInput> = {
 };
 
 export type ScaffolderFormHook<
-  TDeps extends { [key in string]: AnyApiRef },
-  TInput,
+  TDeps extends { [key in string]: AnyApiRef } = {},
+  TInput = unknown,
 > = {
   version: 'v1';
   id: string;

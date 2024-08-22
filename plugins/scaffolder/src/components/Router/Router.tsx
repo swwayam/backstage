@@ -51,6 +51,8 @@ import {
 import { TemplateListPage, TemplateWizardPage } from '../../next';
 import { OngoingTask } from '../OngoingTask';
 import { TemplateEditorPage } from '../../next/TemplateEditorPage';
+import { ScaffolderFormHook } from '@backstage/plugin-scaffolder-react/alpha';
+import { AnyApiRef } from '@backstage/core-plugin-api';
 
 /**
  * The Props for the Scaffolder Router
@@ -70,6 +72,7 @@ export type RouterProps = {
     EXPERIMENTAL_TemplateListPageComponent?: React.ComponentType<TemplateListPageProps>;
     EXPERIMENTAL_TemplateWizardPageComponent?: React.ComponentType<TemplateWizardPageProps>;
   };
+  EXPERIMENTAL_formHooks?: ScaffolderFormHook[];
   groups?: TemplateGroupFilter[];
   templateFilter?: (entity: TemplateEntityV1beta3) => boolean;
   headerOptions?: {
@@ -147,6 +150,7 @@ export const Router = (props: PropsWithChildren<RouterProps>) => {
               layouts={customLayouts}
               components={{ ReviewStepComponent }}
               formProps={props.formProps}
+              EXPERIMENTAL_formHooks={props.EXPERIMENTAL_formHooks}
             />
           </SecretsContextProvider>
         }
