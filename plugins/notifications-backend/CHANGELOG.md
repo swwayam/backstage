@@ -1,5 +1,23 @@
 # @backstage/plugin-notifications-backend
 
+## 0.4.0-next.1
+
+### Patch Changes
+
+- f195972: Validate notification link when new notification is created
+- Updated dependencies
+  - @backstage/backend-common@0.25.0-next.1
+  - @backstage/catalog-client@1.6.7-next.0
+  - @backstage/plugin-auth-node@0.5.2-next.1
+  - @backstage/plugin-events-node@0.4.0-next.1
+  - @backstage/plugin-notifications-node@0.2.6-next.1
+  - @backstage/plugin-signals-node@0.1.11-next.1
+  - @backstage/backend-plugin-api@0.9.0-next.1
+  - @backstage/catalog-model@1.6.0
+  - @backstage/config@1.2.0
+  - @backstage/errors@1.2.4
+  - @backstage/plugin-notifications-common@0.0.5
+
 ## 0.4.0-next.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # @backstage/create-app
 
+## 0.5.19-next.1
+
+### Patch Changes
+
+- 97422b0: Update templates to not refer to backend-common
+- bf370c2: Remove references to the `@backstage/backend-tasks` in versions of the `create-app` package, as it has been deprecated.
+- Updated dependencies
+  - @backstage/cli-common@0.1.14
+
 ## 0.5.19-next.0
 
 ### Patch Changes

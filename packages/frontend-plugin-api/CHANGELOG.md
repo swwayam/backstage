@@ -1,5 +1,19 @@
 # @backstage/frontend-plugin-api
 
+## 0.8.0-next.1
+
+### Patch Changes
+
+- c816e2d: Added `createFrontendModule` as a replacement for `createExtensionOverrides`, which is now deprecated.
+
+  Deprecated the `BackstagePlugin` and `FrontendFeature` type in favor of `FrontendPlugin` and `FrontendFeature` from `@backstage/frontend-app-api` respectively.
+
+- Updated dependencies
+  - @backstage/core-components@0.14.10
+  - @backstage/core-plugin-api@1.9.3
+  - @backstage/types@1.1.1
+  - @backstage/version-bridge@1.0.8
+
 ## 0.8.0-next.0
 
 ### Minor Changes
